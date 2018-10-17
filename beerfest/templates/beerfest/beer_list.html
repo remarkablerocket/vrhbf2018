@@ -1,14 +1,6 @@
+{% extends "base.html" %}
 {% load beer_tags %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- my stuff -->
-    <style>
+    {% block style %}
       table a {
         display: block;
         color: inherit;
@@ -16,39 +8,34 @@
       table a, table a:hover, table a:active {
         text-decoration: none;
       }
-    </style>
-    <title>Vegan Robin Hood Beer Festival</title>
-  </head>
-  <body>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover table-sm">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Num</th>
-            <th scope="col">Res</th>
-            <th scope="col">Bar</th>
-            <th scope="col">Brewery</th>
-            <th scope="col">Name</th>
-            <th scope="col">ABV</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for beer in beer_list %}
-          <tr>
-            <th scope="row"><a href="{% url "beer_detail" beer.id %}">{{ beer.number|nullable_number }}</th>
+    {% endblock %}
+    {% block title %}Beer list - {% endblock %}
+    {% block content %}
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Num</th>
+              <th scope="col">Res</th>
+              <th scope="col">Bar</th>
+              <th scope="col">Brewery</th>
+              <th scope="col">Name</th>
+              <th scope="col">ABV</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for beer in beer_list %}
+            <tr>
+              <th scope="row"><a href="{% url "beer_detail" beer.id %}">{{ beer.number|nullable_number }}</th>
 
-            <td><a href="{% url "beer_detail" beer.id %}">{% if beer.reserved %}Y{% endif %}</td>
-            <td><a href="{% url "beer_detail" beer.id %}">{{ beer.bar.name }}</td>
-            <td><a href="{% url "beer_detail" beer.id %}">{{ beer.brewery.name }}</td>
-            <td><a href="{% url "beer_detail" beer.id %}">{{ beer.name }}{% if beer.notes %} <strong>(see notes)</strong>{% endif %}</td>
-            <td><a href="{% url "beer_detail" beer.id %}">{{ beer.abv|abv }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </body>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</html>
+              <td><a href="{% url "beer_detail" beer.id %}">{% if beer.reserved %}Y{% endif %}</td>
+              <td><a href="{% url "beer_detail" beer.id %}">{{ beer.bar.name }}</td>
+              <td><a href="{% url "beer_detail" beer.id %}">{{ beer.brewery.name }}</td>
+              <td><a href="{% url "beer_detail" beer.id %}">{{ beer.name }}{% if beer.notes %} <strong>(see notes)</strong>{% endif %}</td>
+              <td><a href="{% url "beer_detail" beer.id %}">{{ beer.abv|abv }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endblock %}
