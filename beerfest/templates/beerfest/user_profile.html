@@ -9,9 +9,9 @@
         text-decoration: none;
       }
     {% endblock %}
-    {% block title %}Beer list{% endblock %}
+{% block title %}My beers{% endblock %}
     {% block content %}
-    <h1>The Beers</h1>
+    <h1>My Beers</h1>
       <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover table-sm">
           <thead class="thead-dark">
@@ -39,4 +39,5 @@
           </tbody>
         </table>
       </div>
+    <a href="{% url "beer_list" %}">Back to the list</a>
     {% endblock %}

@@ -23,9 +23,12 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" href="{% url "beer_list" %}">Home</a>
-            </li>
+            </li>{% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "user_profile" %}">My Beers</a>
+            </li>{% endif %}
           </ul>
-          <ul class="navbar-nav ml-auto"> {% if user.is_authenticated %}
+          <ul class="navbar-nav ml-auto">{% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{% url "auth_logout" %}">Log out</a>
             </li>{% else %}

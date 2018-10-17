@@ -1,5 +1,8 @@
 from django import template
 
+from beerfest.models import UserBeer
+
+
 register = template.Library()
 
 
@@ -18,3 +21,10 @@ def abv(value):
 
     s = str(value)
     return s[:-1] + "." + s[-1:] + "%"
+
+
+@register.simple_tag
+def user_starred_beer(user_id, beer_id):
+    return UserBeer.objects.filter(
+        user__id=user_id, beer__id=beer_id, starred=True
+    )

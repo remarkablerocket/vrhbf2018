@@ -10,6 +10,39 @@
     <p>Tasting notes: {{ beer.tasting_notes }}</p>{% if beer.notes %}
     <div class="alert alert-danger">
       <p>{{ beer.notes }}</p>
-    </div>{% endif %}
+    </div>{% endif %}{% user_starred_beer user.id beer.id as starred %}{% if starred %}
+    <button type="button" class="btn btn primary unstar-link">Remove from saved beers</button>
+    {% else %}
+    <button type="button" class="btn btn primary star-link">Add to saved beers</button>{% endif %}
     <a href="{% url "beer_list" %}">Back to the list</a>
+    <script>
+      const btn = document.querySelector("button");
+
+      btn.addEventListener("click", function(e) {
+        e.preventDefault();
+        let data = new FormData();
+        data.append("csrfmiddlewaretoken", "{{ csrf_token }}");
+        const star = btn.classList.contains("star-link");
+        const url = star ?
+                    "{% url "star_beer" beer.id %}" :
+                    "{% url "unstar_beer" beer.id %}";
+
+        console.log(url);
+        fetch(url, {
+          method: "POST",
+          body: data,
+          credentials: "same-origin"
+        }).then(function() {
+          if (star) {
+            btn.innerHTML = "Remove from saved beers";
+            btn.classList.remove("star-link");
+            btn.classList.add("unstar-link");
+          } else {
+            btn.innerHTML = "Add to saved beers";
+            btn.classList.remove("unstar-link");
+            btn.classList.add("star-link");
+          }
+        });
+      });
+    </script>
     {% endblock %}
