@@ -11,12 +11,12 @@
     <div class="alert alert-danger">
       <p>{{ beer.notes }}</p>
     </div>{% endif %}{% user_starred_beer user.id beer.id as starred %}{% if starred %}
-    <button type="button" class="btn btn primary unstar-link">Remove from saved beers</button>
+    <button type="button" id="star-unstar-btn" class="btn btn primary unstar-link">Remove from saved beers</button>
     {% else %}
-    <button type="button" class="btn btn primary star-link">Add to saved beers</button>{% endif %}
+    <button type="button" id="star-unstar-btn" class="btn btn primary star-link">Add to saved beers</button>{% endif %}
     <a href="{% url "beer_list" %}">Back to the list</a>
     <script>
-      const btn = document.querySelector("button");
+      const btn = document.getElementById("star-unstar-btn");
 
       btn.addEventListener("click", function(e) {
         e.preventDefault();
