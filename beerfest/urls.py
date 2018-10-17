@@ -4,5 +4,5 @@ from django.urls import path
 import beerfest.views
 
 urlpatterns = [
-#    url(r'^$', beerfest.views.index, name='index'),
+    url(r'^$', beerfest.views.beer_list, name='index'),
 ]
