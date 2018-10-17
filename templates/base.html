@@ -29,7 +29,10 @@
               <a class="nav-link" href="{% url "user_profile" %}">My Beers</a>
             </li>{% endif %}
           </ul>
-          <ul class="navbar-nav ml-auto">{% if user.is_authenticated %}
+          <ul class="navbar-nav ml-auto">{% if user.is_authenticated %}{% if user.is_superuser %}
+            <li>
+              <a class="nav-link" href="/admin/">Admin</a>
+            </li>{% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{% url "auth_logout" %}">Log out</a>
             </li>{% else %}
