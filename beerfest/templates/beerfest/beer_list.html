@@ -34,7 +34,7 @@
         </thead>
         <tbody>
           {% for beer in beer_list %}
-          <tr{% if beer.notes %} class="table-danger"{% endif %}>
+          <tr>
             <th scope="row"><a href="{% url "beer_detail" beer.id %}">{{ beer.number|nullable_number }}</th>
 
             <td><a href="{% url "beer_detail" beer.id %}">{% if beer.reserved %}Y{% endif %}</td>
