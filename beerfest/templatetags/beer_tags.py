@@ -14,7 +14,7 @@ def nullable_number(value):
 @register.filter
 def abv(value):
     if value is None:
-        return ""
+        return "TBC"
 
     s = str(value)
     return s[:-1] + "." + s[-1:] + "%"

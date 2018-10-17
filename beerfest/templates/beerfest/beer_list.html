@@ -34,13 +34,13 @@
         </thead>
         <tbody>
           {% for beer in beer_list %}
-          <tr>
+          <tr{% if beer.notes %} class="table-danger"{% endif %}>
             <th scope="row"><a href="{% url "beer_detail" beer.id %}">{{ beer.number|nullable_number }}</th>
 
             <td><a href="{% url "beer_detail" beer.id %}">{% if beer.reserved %}Y{% endif %}</td>
             <td><a href="{% url "beer_detail" beer.id %}">{{ beer.bar.name }}</td>
             <td><a href="{% url "beer_detail" beer.id %}">{{ beer.brewery.name }}</td>
-            <td><a href="{% url "beer_detail" beer.id %}">{{ beer.name }}</td>
+            <td><a href="{% url "beer_detail" beer.id %}">{{ beer.name }}{% if beer.notes %} <strong>(see notes)</strong>{% endif %}</td>
             <td><a href="{% url "beer_detail" beer.id %}">{{ beer.abv|abv }}</td>
           </tr>
           {% endfor %}
