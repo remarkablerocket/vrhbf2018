@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load beer_tags %}
-{% block title %}{{ beer.name }} - {% endblock %}
+{% block title %}{{ beer.name }}{% endblock %}
     {% block content %}
     <h1>{{ beer.name }}</h1>
     <p>by {{ beer.brewery.name }} of {{ beer.brewery.location }}</p>
