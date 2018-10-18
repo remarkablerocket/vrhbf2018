@@ -15,7 +15,7 @@
     <button type="button" id="star-unstar-btn" class="btn btn-success unstar-link">Remove from saved beers</button>
     {% else %}
     <button type="button" id="star-unstar-btn" class="btn btn-warning star-link">Add to saved beers</button>{% endif %}{% endif %}
-    <a class="btn btn-primary" role="button" href="{% url "beer_list" %}">Back to the list</a>
+    <a class="btn btn-primary" role="button" href="{% url "beer_list" %}">Back to the list</a>{% if user.is_authenticated %}
     <script>
       const btn = document.getElementById("star-unstar-btn");
 
@@ -49,5 +49,5 @@
           }
         });
       });
-    </script>
+    </script>{% endif %}
     {% endblock %}
