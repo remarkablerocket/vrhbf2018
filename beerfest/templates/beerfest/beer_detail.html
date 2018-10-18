@@ -28,7 +28,6 @@
                     "{% url "star_beer" beer.id %}" :
                     "{% url "unstar_beer" beer.id %}";
 
-        console.log(url);
         fetch(url, {
           method: "POST",
           body: data,
