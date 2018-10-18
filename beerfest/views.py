@@ -13,7 +13,7 @@ def user_profile(request):
         Q(userbeer__user=request.user, userbeer__starred=True) |
         Q(userbeer__user=request.user, userbeer__tried=True) |
         Q(userbeer__user=request.user, userbeer__rating__isnull=False)
-    ).distinct()
+    ).distinct().select_related("bar", "brewery")
 
     context = {"user": request.user, "beer_list": beer_list}
     return render(request, "beerfest/user_profile.html", context)
@@ -47,7 +47,8 @@ def index(request):
 
 
 def beer_list(request):
-    beer_list = Beer.objects.order_by("bar__id", "brewery__name", "name")
+    beer_list = Beer.objects.order_by(
+        "bar__id", "brewery__name", "name").select_related("bar", "brewery")
     context = {"beer_list": beer_list}
     return render(request, "beerfest/beer_list.html", context)
 
