@@ -28,3 +28,8 @@ def user_starred_beer(user_id, beer_id):
     return UserBeer.objects.filter(
         user__id=user_id, beer__id=beer_id, starred=True
     )
+
+
+@register.inclusion_tag("beerfest/beer_list_table.html")
+def display_beer_table(beer_list, user):
+    return {"beer_list": beer_list, "user": user}
