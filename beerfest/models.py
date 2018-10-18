@@ -19,7 +19,6 @@ class Bar(models.Model):
     def __str__(self):
         return self.name
 
-
     class Meta:
         ordering = ["id"]
 
@@ -34,26 +33,26 @@ class Beer(models.Model):
     tasting_notes = models.TextField()
     notes = models.TextField()
 
-
     def __str__(self):
         return f"{self.name} by {self.brewery.name}"
-
 
     class Meta:
         ordering = ["id"]
 
 
 class UserBeer(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    beer = models.ForeignKey(Beer, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,
+                             related_name="userbeer")
+    beer = models.ForeignKey(Beer, on_delete=models.CASCADE,
+                             related_name="userbeer")
     starred = models.BooleanField(default=True)
     tried = models.BooleanField(default=False)
     rating = models.PositiveSmallIntegerField(null=True, blank=True)
 
-
     def __str__(self):
         return f"{self.user.username} and {self.beer.name}"
 
-
     class Meta:
         ordering = ["id"]
+        unique_together = ["user", "beer"]

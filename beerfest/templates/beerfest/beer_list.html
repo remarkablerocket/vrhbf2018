@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load beer_tags %}
     {% block style %}
+      .fa-star {
+        color: #ddd;
+      }
+      .fa-star.starred {
+        color: yellow;
+      }
       th, td {
         height: 100%;
       }
@@ -17,7 +23,8 @@
     {% block title %}Beer list{% endblock %}
     {% block content %}
     <h1>The Beers</h1>
-      <div class="table-responsive">
-        {% display_beer_table beer_list user %}
+      <div class="table-responsive">{% if user.is_authenticated %}
+        {% display_beer_table_with_stars beer_list user %}{% else %}
+        {% display_beer_table beer_list user %}{% endif %}
       </div>
     {% endblock %}
