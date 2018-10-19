@@ -30,8 +30,8 @@ class Beer(models.Model):
     number = models.PositiveSmallIntegerField(null=True, blank=True)
     reserved = models.BooleanField(default=False)
     abv = models.PositiveSmallIntegerField(null=True, blank=True)
-    tasting_notes = models.TextField()
-    notes = models.TextField()
+    tasting_notes = models.TextField(blank=True)
+    notes = models.TextField(blank=True)
 
     def __str__(self):
         return f"{self.name} by {self.brewery.name}"
