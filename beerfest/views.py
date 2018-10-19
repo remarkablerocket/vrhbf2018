@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
 from django.db.models.expressions import OuterRef, Subquery
+from django.db.models.functions import Coalesce
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
@@ -56,7 +57,11 @@ def beer_list(request):
             user_id=request.user.id,
             beer_id=OuterRef("id")
         )[:1].values("starred")
-        beer_list = beer_list.annotate(starred=Subquery(starred))
+
+        beer_list = beer_list.annotate(
+            starred=Coalesce(Subquery(starred), False)
+        )
+
     context = {"beer_list": beer_list}
     return render(request, "beerfest/beer_list.html", context)
 
