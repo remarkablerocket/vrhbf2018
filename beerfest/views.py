@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
-from django.db.models import Q, Prefetch, When, Case, Value, BooleanField
+from django.db.models import Q
 from django.db.models.expressions import OuterRef, Subquery
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
@@ -52,8 +52,6 @@ def beer_list(request):
         "bar", "brewery"
     )
     if request.user.is_authenticated:
-        user_beers = UserBeer.objects.filter(
-            user=request.user).select_related("bar", "brewery")
         starred = UserBeer.objects.filter(
             user_id=request.user.id,
             beer_id=OuterRef("id")
