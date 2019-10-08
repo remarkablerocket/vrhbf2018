@@ -4,13 +4,13 @@ from django.urls import path
 
 import registration
 
-from beerfest.views import user_profile
+from beerfest.views import UserProfileView
 import beerfest
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("registration.backends.simple.urls")),
-    path('accounts/profile/', user_profile, name='user-profile'),
+    path('accounts/profile/', UserProfileView.as_view(), name='user-profile'),
     path('', include("beerfest.urls")),
 ]
