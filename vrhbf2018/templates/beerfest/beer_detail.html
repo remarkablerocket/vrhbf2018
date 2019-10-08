@@ -22,16 +22,16 @@
       btn.addEventListener("click", function(e) {
         e.preventDefault();
         let data = new FormData();
-        data.append("csrfmiddlewaretoken", "{{ csrf_token }}");
         const star = btn.classList.contains("star-link");
-        const url = star ?
-                    "{% url "beer-star" beer.id %}" :
-                    "{% url "beer-unstar" beer.id %}";
+        const url = "{% url "beer-star" beer.id %}";
+        const headers = new Headers();
+        headers.append("X-CSRFToken", "{{ csrf_token }}");
 
         fetch(url, {
-          method: "POST",
+          method: star ? "PUT" : "DELETE",
           body: data,
-          credentials: "same-origin"
+          credentials: "same-origin",
+          headers
         }).then(function() {
           if (star) {
             btn.innerHTML = "Remove from saved beers";
