@@ -8,7 +8,7 @@ gunicorn = "*"
 django-heroku = "*"
 django-registration-redux = "*"
 whitenoise = "*"
-beerfest = {git = "git://github.com/remarkablerocket/beerfest"}
+beerfest = {git = "git://github.com/remarkablerocket/beerfest",ref = "v0.0.1a3"}
 
 [requires]
 python_version = "3.7"
