@@ -17,7 +17,7 @@
     "default": {
         "beerfest": {
             "git": "git://github.com/remarkablerocket/beerfest",
-            "ref": "5de4d8f98c46b6d7e080f62cbe6a68ae535fbcb6"
+            "ref": "94c7bed853cef8972a8ca15f087b416433702cea"
         },
         "dj-database-url": {
             "hashes": [
