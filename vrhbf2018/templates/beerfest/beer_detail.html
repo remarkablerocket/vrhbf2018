@@ -15,7 +15,7 @@
     <button type="button" id="star-unstar-btn" class="btn btn-success unstar-link">Remove from saved beers</button>
     {% else %}
     <button type="button" id="star-unstar-btn" class="btn btn-warning star-link">Add to saved beers</button>{% endif %}{% endif %}
-    <a class="btn btn-primary" role="button" href="{% url "beer_list" %}">Back to the list</a>{% if user.is_authenticated %}
+    <a class="btn btn-primary" role="button" href="{% url "beer-list" %}">Back to the list</a>{% if user.is_authenticated %}
     <script>
       const btn = document.getElementById("star-unstar-btn");
 
@@ -25,8 +25,8 @@
         data.append("csrfmiddlewaretoken", "{{ csrf_token }}");
         const star = btn.classList.contains("star-link");
         const url = star ?
-                    "{% url "star_beer" beer.id %}" :
-                    "{% url "unstar_beer" beer.id %}";
+                    "{% url "beer-star" beer.id %}" :
+                    "{% url "beer-unstar" beer.id %}";
 
         fetch(url, {
           method: "POST",

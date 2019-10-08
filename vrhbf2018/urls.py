@@ -11,6 +11,6 @@ import beerfest
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("registration.backends.simple.urls")),
-    path('accounts/profile/', user_profile, name='user_profile'),
+    path('accounts/profile/', user_profile, name='user-profile'),
     path('', include("beerfest.urls")),
 ]
