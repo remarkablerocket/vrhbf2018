@@ -18,7 +18,7 @@
     {% block content %}
     <h1>My Beers</h1>
       <div class="table-responsive">
-        {% display_beer_table beer_list user %}
+        {% display_beer_table starred_beers user %}
       </div>
     <a class="btn btn-primary" role="button" href="{% url "beer-list" %}">Back to full list</a>
     {% endblock %}
