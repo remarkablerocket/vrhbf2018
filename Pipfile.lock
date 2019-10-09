@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "20ece1a70f9d6447664b478e33a7f33ab8ffb19961b94bb4cf69762ec140ffff"
+            "sha256": "74919cda6b4e5c06a747dd68ee18a27589f2e9839fe410c983c8a668badb0af4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -17,7 +17,7 @@
     "default": {
         "beerfest": {
             "git": "git://github.com/remarkablerocket/beerfest",
-            "ref": "94c7bed853cef8972a8ca15f087b416433702cea"
+            "ref": "ebcde96015648b73f959c76f7625678a6a0346c1"
         },
         "dj-database-url": {
             "hashes": [
